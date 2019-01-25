@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公司相关测试</title>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+<div class="container">
+    <div style="margin-top: 25px;">
+        <span class="text-muted" style="vertical-align: bottom;font-size: 28px; margin-left: 5px;">{$title}</span>
+    </div>
+</div>
+<div class="container"><hr style="color: #9d9d9d"></div>
+<div class="container">
+    <a href="/company/list/jt_1548139507">查看集团旗下公司列表【company/list/jt_1548139507】</a>
+    <br/>
+    <a href="/company/get/gs_1548153426">编辑公司初始化数据接口【company/get/gs_1548153426】</a>
+    <br/>
+    <form action="/company/create" method="post">
+        <h1>添加公司</h1>
+        <input type="text" name="f_name" placeholder="请输入公司中文名">
+        <input type="text" name="f_en_name" placeholder="请输入公司英文名"><br>
+        <input type="text" name="f_group_code" placeholder="jt_1548139507" value="jt_1548139507">
+        <p><input type="submit" value="增加新公司"></p>
+    </form>
+    <hr/>
+    <form action="/company/update" method="post">
+        <h1>编辑公司</h1>
+        <input type="text" name="f_name" placeholder="请输入公司中文名">
+        <input type="text" name="f_en_name" placeholder="请输入公司英文名"><br>
+        <input type="text" name="f_status" placeholder="请输入公司状态">
+        <input type="text" name="f_code" placeholder="gs_98029314963931166" value="gs_98029314963931166">
+        <p><input type="submit" value="更新公司信息"></p>
+    </form>
+    <hr/>
+    <hr/>
+    <form action="/company/delete" method="post">
+        <h1>删除公司</h1>
+        <input type="text" name="f_code" value="gs_1548153426">
+        <input type="submit" value="删除公司信息">
+        <p></p>
+    </form>
+</div>
+</body>
+</html>

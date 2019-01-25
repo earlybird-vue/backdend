@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>集团扩展信息测试</title>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+<div class="container">
+    <div style="margin-top: 25px;">
+        <span class="text-muted" style="vertical-align: bottom;font-size: 28px; margin-left: 5px;">{$title}</span>
+    </div>
+</div>
+<div class="container"><hr style="color: #9d9d9d"></div>
+<div class="container">
+    <a href="/extend/get/jt_1548139507">获取集团扩展信息明细接口【extend/get/jt_1548139507】</a>
+    <form action="/extend/create" method="post">
+        <h1>扩展信息添加</h1>
+        <table>
+            <tr>
+                <td>二级域名：<input type="text" name="f_subdomain" value="newapi.master.com"></td>
+                <td>集团编码：<input type="text" name="f_group_code" value="jt_1548139507"></td>
+            </tr>
+            <tr>
+                <td>用户logo：<input type="text" name="f_logo" value=""></td>
+                <td>域名邮箱：<input type="text" name="f_group_email" value="email.liuliny.com"></td>
+            </tr>
+            <tr><td colspan="2"><input type="submit" value="提交扩展信息(接口extend/create)"></td></tr>
+        </table>
+    </form>
+    <hr/>
+    <form action="/extend/update" method="post">
+        <h1>扩展信息编辑</h1>
+        <table>
+            <tr>
+                <td>二级域名：<input type="text" name="f_subdomain" value="newapi.master.com"></td>
+                <td>集团编码：<input type="text" name="f_group_code" value="jt_1548139507"></td>
+            </tr>
+            <tr>
+                <td>用户logo：<input type="text" name="f_logo" value=""></td>
+                <td>域名邮箱：<input type="text" name="f_group_email" value="email.liuliny.com"></td>
+            </tr>
+            <tr>
+                <td>扩展信息编码：<input type="text" name="f_code" value="ex_1548296601"></td>
+                <td>扩展信息状态：<input type="text" name="f_status" value="0"></td>
+            </tr>
+            <tr><td colspan="2"><input type="submit" value="更新扩展信息(接口extend/update)"></td></tr>
+        </table>
+        <p></p>
+    </form>
+</div>
+</body>
+</html>

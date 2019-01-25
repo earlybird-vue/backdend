@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>集团财务信息测试</title>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+<div class="container">
+    <div style="margin-top: 25px;">
+        <span class="text-muted" style="vertical-align: bottom;font-size: 28px; margin-left: 5px;">{$title}</span>
+    </div>
+</div>
+<div class="container"><hr style="color: #9d9d9d"></div>
+<div class="container">
+    <a href="/finance/get/jt_1548139507">获取集团财务明细数据接口【finance/get/jt_1548139507】</a>
+    <form action="/finance/create" method="post">
+        <h1>财务信息添加</h1>
+        <table>
+            <tr>
+                <td>年销售额范围ID：<input type="text" name="f_sale_volume_id" value="1"></td>
+                <td>年销售额：<input type="text" name="f_sale_volume" value="10000"></td>
+            </tr>
+            <tr>
+                <td>年采购额范围ID：<input type="text" name="f_purhchase_volume_id" value="2"></td>
+                <td>年采购额：<input type="text" name="f_purhchase_volume" value="20000"></td>
+            </tr>
+            <tr>
+                <td>资金流范围ID：<input type="text" name="f_cashflow_volume_id" value="3"></td>
+                <td>资金流状况：<input type="text" name="f_cashflow_volume" value="30000"></td>
+            </tr>
+            <tr><td colspan="2">集团编码:<input type="text" name="f_group_code" value="jt_1548139507"></td> </tr>
+            <tr><td colspan="2"><input type="submit" value="提交财务信息(接口finance/create)"></td></tr>
+        </table>
+    </form>
+    <hr/>
+    <form action="/finance/update" method="post">
+        <h1>财务信息编辑</h1>
+        <table>
+            <tr>
+                <td>年销售额范围ID：<input type="text" name="f_sale_volume_id" value="1"></td>
+                <td>年销售额：<input type="text" name="f_sale_volume" value="10000"></td>
+            </tr>
+            <tr>
+                <td>年采购额范围ID：<input type="text" name="f_purhchase_volume_id" value="2"></td>
+                <td>年采购额：<input type="text" name="f_purhchase_volume" value="20000"></td>
+            </tr>
+            <tr>
+                <td>资金流范围ID：<input type="text" name="f_cashflow_volume_id" value="3"></td>
+                <td>资金流状况：<input type="text" name="f_cashflow_volume" value="30000"></td>
+            </tr>
+            <tr>
+                <td>集团编码:<input type="text" name="f_group_code" value="jt_1548139507"></td>
+                <td>财务状态:<input type="text" name="f_status" value="1"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="text" name="f_code" value="cash_15483096291974">
+                </td>
+            </tr>
+            <tr><td colspan="2"><input type="submit" value="更新财务信息(接口finance/update)"></td></tr>
+        </table>
+        <p></p>
+    </form>
+</div>
+</body>
+</html>

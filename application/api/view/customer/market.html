@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>买家新增</title>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+<div class="container">
+    <div style="margin-top: 25px;">
+        <span class="text-muted" style="vertical-align: bottom;font-size: 28px; margin-left: 5px;">{$title}</span>
+    </div>
+</div>
+<div class="container"><hr style="color: #9d9d9d"></div>
+<div class="container">
+    <form action="savemarket" method="post">
+        <input type="text" name="name">
+        <input type="submit" value="提交集团">
+    </form>
+
+    <form action="savenewcompany" method="post">
+        <input type="text" name="name">
+        <input type="submit" value="提交新公司">
+    </form>
+    <form action="/admin/base/login" method="post">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="submit" value="登录">
+    </form>
+    <form action="saveOther" method="post" enctype="multipart/form-data">
+        logo：<input type="file" name="file"><br/>
+        账号：<input type="text" name="user"><br/>
+        密码：<input type="password" name="pass">
+        <input type="submit" value="提交其他设置">
+    </form>
+    <a href="/market/getcash">aa</a>
+
+</div>
+</body>
+</html>

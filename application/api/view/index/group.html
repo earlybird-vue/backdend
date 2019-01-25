@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>集团相关测试</title>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+<div class="container">
+    <div style="margin-top: 25px;">
+        <span class="text-muted" style="vertical-align: bottom;font-size: 28px; margin-left: 5px;">{$title}</span>
+    </div>
+</div>
+<div class="container"><hr style="color: #9d9d9d"></div>
+<div class="container">
+    <a href="/group/list">查看集团列表【group/list】</a>
+    <br/>
+    <a href="/group/get/jt_1548139507">查看集团名称明细【group/get/jt_1548139507】</a>
+    <br/>
+    <form action="/group/create" method="post">
+        <h1>集团信息添加</h1>
+        <input type="text" name="f_name" value="集团1">
+        <input type="text" name="f_web_site" value="www.jt.com">
+        <input type="text" name="f_group_number" value="jituan001"><br/>
+        <input type="text" name="f_industry_id" value="1">
+        <input type="text" name="f_country_id" value="2">
+        <input type="text" name="f_type_id" value="3"><br/>
+        <input type="text" name="f_contact_phone" value="18588209091">
+        <input type="text" name="f_address" value="集团地址">
+        <input type="text" name="f_fiscal_month" value="4"><br/>
+        <input type="submit" value="提交集团信息">
+        <p></p>
+    </form>
+    <hr/>
+    <form action="/group/update" method="post">
+        <h1>集团信息编辑</h1>
+        <input type="text" name="f_name" value="集团1">
+        <input type="text" name="f_web_site" value="www.jt.com">
+        <input type="text" name="f_group_number" value="jituan001"><br/>
+        <input type="text" name="f_industry_id" value="1">
+        <input type="text" name="f_country_id" value="2">
+        <input type="text" name="f_type_id" value="3"><br/>
+        <input type="text" name="f_contact_phone" value="18588209091">
+        <input type="text" name="f_address" value="集团地址">
+        <input type="text" name="f_fiscal_month" value="4"><br/>
+        <input type="text" name="f_code" value="jt_1548139507">
+        <input type="submit" value="更新集团信息">
+        <p></p>
+    </form>
+    <hr/>
+    <form action="/group/delete" method="post">
+        <h1>删除集团</h1>
+        <input type="text" name="f_code" value="jt_1548139507">
+        <input type="submit" value="删除集团信息">
+        <p></p>
+    </form>
+    <hr/>
+    <form action="/group/deletes" method="post">
+        <h1>批量删除集团</h1>
+        <input type="checkbox" name="f_codes[]" value="jt_1548139507">集团名称
+        <input type="checkbox" name="f_codes[]" value="jt_98029314963931152">集团5
+        <input type="submit" value="批量删除">
+        <p></p>
+    </form>
+    <br/>
+    <a href="/group/show/jt_1548139507">管理集团接口【group/show/jt_1548139507】</a>
+    <br/>
+</div>
+</body>
+</html>
