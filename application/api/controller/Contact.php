@@ -112,10 +112,8 @@ class Contact extends Baseapi
      */
     public function save()
     {
-        $postData = Request::instance()->param();
+        $post_datas = Request::instance()->param();
         $contactModel = model('Contact');
-        $post_datas = array($postData,$postData);
-        $post_datas[1]['f_last_name']= '李';
         $datas = self::_changeDatas($post_datas,1);
         $resData = $contactModel->createData($datas);
         if (!$resData) {
@@ -284,7 +282,9 @@ class Contact extends Baseapi
                     unset($data[$dataK]);
                     $data[$k] = $v;
                 }
-
+                $data['is_financial'] = 0;
+                $data['is_enterprise'] = 0;
+                $data['is_charge'] = 0;
                 if(isset($data['user_role']) && !empty($data['user_role'])){
                     //角色添加
                     if(in_array("financial",$data['user_role'])){
