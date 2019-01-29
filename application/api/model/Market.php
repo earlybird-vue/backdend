@@ -63,10 +63,10 @@ class Market extends Model
         $this->startTrans();
         try {
             //授权邮箱信息
-            $authorized_data = $param['authorized_user_email'];
-            unset($param['authorized_user_email']);
+            $authorized_data = $param['authorized_user_code'];
+            unset($param['authorized_user_code']);
             //市场基础表信息入库
-            $this->insert($param);
+            $this->insertAll($param);
             //授权邮箱信息表入库
             if(!empty($authorized_data)){
                 Db::name('market_authorized_user')->insertAll($authorized_data);
@@ -81,7 +81,7 @@ class Market extends Model
     }
 
     /**
-     * @desc 通过联系人编码获取联系人基础信息
+     * @desc 通过联系人编码获取市场基础信息
      */
     public function get_data_by_code($market_code)
     {
@@ -89,6 +89,17 @@ class Market extends Model
         $field = "code market_code,group_code,company_code,market_name,currency_sign,currency_name,";
         $field .= "sync_type,memo,charge_user_code,charge_user_name,status";
         return $this->field($field)->where($map)->find();
+    }
+
+    /**
+     * @desc 通过联系人编码获取市场基础信息
+     */
+    public function get_data_by_codes($market_codes)
+    {
+        $map['code'] = array('in',$market_codes);
+        $field = "code market_code,group_code,company_code,market_name,currency_sign,currency_name,";
+        $field .= "sync_type,memo,charge_user_code,charge_user_name,status";
+        return $this->field($field)->where($map)->select();
     }
 
     /**
@@ -102,27 +113,27 @@ class Market extends Model
         try {
             $map['market_code'] = $market_code;
             //第一步看是否取消邮箱授权
-            if($param['delete_all_emails']){
+            if($param['delete_all_users']){
                 Db::name('market_authorized_user')->where($map)->setField('status','0');
             }else{
                 //如果存在取消授权的并且不为空
-                if(isset($param['delete_emails']) && !empty($param['delete_emails'])){
-                    $map['user_email'] = array('in',$param['delete_emails']);
+                if(isset($param['delete_users']) && !empty($param['delete_users'])){
+                    $map['user_code'] = array('in',$param['delete_users']);
                     Db::name('market_authorized_user')->where($map)->setField('status','0');
-                    unset($param['delete_emails']);
+                    unset($param['delete_users']);
                 }
-                if(isset($param['active_emails']) && !empty($param['active_emails'])){
-                    $map['user_email'] = array('in',$param['active_emails']);
+                if(isset($param['active_users']) && !empty($param['active_users'])){
+                    $map['user_code'] = array('in',$param['active_users']);
                     Db::name('market_authorized_user')->where($map)->setField('status','1');
-                    unset($param['active_emails']);
+                    unset($param['active_users']);
                 }
-                if(isset($param['insert_emails']) && !empty($param['insert_emails'])){
-                    Db::name('market_authorized_user')->insertAll($param['insert_emails']);
-                    unset($param['insert_emails']);
+                if(isset($param['insert_users']) && !empty($param['insert_users'])){
+                    Db::name('market_authorized_user')->insertAll($param['insert_users']);
+                    unset($param['insert_users']);
                 }
             }
             $market_w['code'] = $market_code;
-            unset($param['delete_all_emails']);
+            unset($param['delete_all_users']);
             $this->where($market_w)->update($param);
             $this->commit();
             return true;

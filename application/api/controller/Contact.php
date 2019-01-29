@@ -206,9 +206,10 @@ class Contact extends Baseapi
     /**
      * @title 获取该集团下可用被授权的联系人邮箱列表
      * @desc  {"0":"接口地址：http://api.master.com/contact/simplelist/jt_1548139507","1":"请求方式：GET","2":"接口备注：必须传入keys值用于通过加密验证"}
-     * @returnDemo {"0":{"code":200,"data":[{"user_email":"939942478@qq.com","user_name":"刘林燕","user_phone":"18588209321"},{"user_email":"1874299065@qq.com","user_name":"刘林燕","user_phone":"18588209321"},{"user_email":"15@qq.com","user_name":"刘林燕","user_phone":"18588209321"}],"error":""}}
+     * @returnDemo {"0":{"code":200,"data":[{"user_code":"ct_98029314963931299","user_email":"939942478@qq.com","user_name":"刘林燕","user_phone":"18588209321"},{"user_code":"ct_1548383615","user_email":"1874299065@qq.com","user_name":"刘林燕","user_phone":"18588209321"}],"error":""}}
      * @return {"name":"code","type":"int","required":true,"desc":"返回码：200成功,其他失败","level":1}
      * @return {"name":"data","type":"array","desc":"返回的成功信息","level":1}
+     * @return {"name":"user_code","type":"string","desc":"用户唯一编码","level":2}
      * @return {"name":"user_email","type":"string","desc":"用户邮箱","level":2}
      * @return {"name":"user_name","type":"string","desc":"用户名称","level":2}
      * @return {"name":"user_phone","type":"string","desc":"用户联系电话","level":2}
@@ -231,14 +232,17 @@ class Contact extends Baseapi
      * @title 添加市场信息中获取集团清算负责人以及授权邮箱接口
      * @desc  {"0":"接口地址：http://api.master.com/contact/getCharge/jt_1548139507","1":"请求方式：GET","2":"接口备注：必须传入keys值用于通过加密验证"}
      * @param {"name":"f_code","type":"int","required":true,"desc":"集团唯一编码","level":1}
-     * @returnDemo {"0":{"code":200,"data":{"charge_list":[{"contact_code":"ct_98029314963931168","user_name":"刘林燕"},{"contact_code":"ct_98029314963931169","user_name":"将**"},{"contact_code":"ct_98029314963931170","user_name":"刘**"}],"emails_list":[{"user_email":"939942478@qq.com"},{"user_email":"187@qq.com"},{"user_email":"15@qq.com"}]},"error":""}}
+     * @returnDemo {"0":{"code":200,"data":{"charge_list":[{"contact_code":"ct_98029314963931168","user_name":"刘林燕"},{"contact_code":"ct_98029314963931169","user_name":"将**"},{"contact_code":"ct_98029314963931170","user_name":"刘**"}],"emails_list":[{"user_code":"ct_98029314963931299","user_email":"939942478@qq.com","user_name":"刘林燕","user_phone":"18588209321"},{"user_code":"ct_1548383615","user_email":"1874299065@qq.com","user_name":"刘林燕","user_phone":"18588209321"}]},"error":""}}
      * @return {"name":"code","type":"int","required":true,"desc":"返回码：200成功,其他失败","level":1}
      * @return {"name":"data","type":"array","required":true,"desc":"返回的成功信息","level":1}
      * @return {"name":"charge_list","type":"array","desc":"集团清算负责人列表","level":2}
      * @return {"name":"contact_code","type":"string","desc":"清算负责人编码","level":3}
      * @return {"name":"user_name","type":"array","desc":"清算负责人姓名","level":3}
      * @return {"name":"emails_list","type":"array","desc":"集团联系人邮箱列表","level":2}
-     * @return {"name":"user_email","type":"string","desc":"联系人邮箱","level":3}
+     * @return {"name":"user_code","type":"string","desc":"用户唯一编码","level":2}
+     * @return {"name":"user_email","type":"string","desc":"用户邮箱","level":2}
+     * @return {"name":"user_name","type":"string","desc":"用户名称","level":2}
+     * @return {"name":"user_phone","type":"string","desc":"用户联系电话","level":2}
      * @return {"name":"err","type":"string","required":true,"desc":"返回的错误信息","level":1}
      */
     public function get_charge()
@@ -282,27 +286,27 @@ class Contact extends Baseapi
                     unset($data[$dataK]);
                     $data[$k] = $v;
                 }
-                $data['is_financial'] = 0;
-                $data['is_enterprise'] = 0;
-                $data['is_charge'] = 0;
-                if(isset($data['user_role']) && !empty($data['user_role'])){
-                    //角色添加
-                    if(in_array("financial",$data['user_role'])){
-                        $data['is_financial'] = 1;
-                    }
-                    if(in_array("enterprise",$data['user_role'])){
-                        $data['is_enterprise'] = 1;
-                    }
-                    if(in_array("charge",$data['user_role'])){
-                        $data['is_charge'] = 1;
-                    }
-                }
-                if(isset($data['user_role'])){
-                    unset($data['user_role']);
-                }
-                $data['code'] = 'ct_'.$contactModel->buildUUID();
-                $data['user_name'] = $data['last_name'].$data['first_name'];
             }
+            $data['is_financial'] = 0;
+            $data['is_enterprise'] = 0;
+            $data['is_charge'] = 0;
+            if(isset($data['user_role']) && !empty($data['user_role'])){
+                //角色添加
+                if(in_array("financial",$data['user_role'])){
+                    $data['is_financial'] = 1;
+                }
+                if(in_array("enterprise",$data['user_role'])){
+                    $data['is_enterprise'] = 1;
+                }
+                if(in_array("charge",$data['user_role'])){
+                    $data['is_charge'] = 1;
+                }
+            }
+            if(isset($data['user_role'])){
+                unset($data['user_role']);
+            }
+            $data['code'] = 'ct_'.$contactModel->buildUUID();
+            $data['user_name'] = $data['last_name'].$data['first_name'];
             //如果是添加操作
             if( $act == 1 ){
                 $data['create_user'] = $username;

@@ -8,7 +8,7 @@ return [
     // 数据库类型
     'type'           => 'mysql',
     // 服务器地址
-    'hostname'       => 'localhost',
+    'hostname'       => '192.168.1.111',
     // 数据库名
     'database'       => 'start',
     // 用户名

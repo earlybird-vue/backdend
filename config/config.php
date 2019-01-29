@@ -240,7 +240,7 @@ return [
     //邮件服务配置
     'site' => [
         'charset'=>'utf-8',
-        'debug' => '1',
+        'debug' => '0',
         'mail_type'=>1,
         'mail_smtp_host' => 'smtp.126.com',
         'mail_smtp_user' => 'liulinyan521@126.com',
@@ -248,5 +248,22 @@ return [
         'mail_verify_type' => 'smtp',
         'mail_smtp_port' => '25',
         'mail_from' => 'liulinyan521@126.com'
+    ],
+    //数据库配置1
+    'db_self_manage' => [
+        // 数据库类型
+        'type'        => 'mysql',
+        // 服务器地址
+        'hostname'    => 'localhost',
+        // 数据库名
+        'database'    => 'moniter',
+        // 数据库用户名
+        'username'    => 'root',
+        // 数据库密码
+        'password'    => '',
+        // 数据库编码默认采用utf8
+        'charset'     => 'utf8',
+        // 数据库表前缀
+        'prefix'      => 'oa_',
     ],
 ];

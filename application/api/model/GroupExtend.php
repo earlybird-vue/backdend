@@ -108,4 +108,23 @@ class GroupExtend extends Model
         return $this->where($map)->setField('status','0');
     }
 
+    /**
+     * @param $name string
+     * @param $language string
+     * @desc 拿取模板的内容
+     * @return array
+     */
+    public function get_email_template($name,$language)
+    {
+        $map['name'] = array('eq',$name);
+        $map['language'] = array('eq',$language);
+        $map['status'] = array('eq','normal');
+        return Db::connect('db_self_manage')->table('oa_email_templates')->where($map)->find();
+    }
+
+    public function createLogs($param)
+    {
+        return Db::connect('db_self_manage')->table('oa_email_logs')->insertAll($param);
+    }
+
 }

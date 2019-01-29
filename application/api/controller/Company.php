@@ -170,24 +170,22 @@ class Company extends Baseapi
         $companyModel = model('Company');
         foreach($datas as $key=>$data)
         {
-            foreach($data as $k=>$v)
-            {
+            foreach($data as $k=>$v) {
                 $dataK = $k;
-                if(strpos($k,'f_')!==false){
-                    $k = substr($k,2,strlen($k));
+                if (strpos($k, 'f_') !== false) {
+                    $k = substr($k, 2, strlen($k));
                     unset($data[$dataK]);
                     $data[$k] = $v;
                 }
-
-                //如果是添加操作
-                if( $act == 1 ){
-                    $data['create_user'] = $username;
-                }elseif( $act == 2 ){
-                    $data['last_update_user'] = $username;
-                }
-                $data['code'] = 'gs_'.$companyModel->buildUUID();
-                $datas[$key] = $data;
             }
+            //如果是添加操作
+            if( $act == 1 ){
+                $data['create_user'] = $username;
+            }elseif( $act == 2 ){
+                $data['last_update_user'] = $username;
+            }
+            $data['code'] = 'gs_'.$companyModel->buildUUID();
+            $datas[$key] = $data;
         }
         return $datas;
     }

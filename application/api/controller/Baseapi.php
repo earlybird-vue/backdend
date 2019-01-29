@@ -8,6 +8,7 @@
 namespace app\api\controller;
 
 use \app\admin\controller\ApiCommon;
+use  \think\Request;
 
 /**
  * @title 接口基类 以免每个api都继承
@@ -16,6 +17,19 @@ use \app\admin\controller\ApiCommon;
  */
 class Baseapi
 {
+    public function __construct()
+    {
+        $paramModel = Request::instance();
+        $param['name'] = $paramModel->baseUrl();
+        $content = is_array($paramModel->param()) ? json_encode($paramModel->param()) : $paramModel->param();
+        if(!empty($content)){
+            $param['apicontent'] = $content;
+        }
+        $param['ip'] = $paramModel->ip();
+        $param['createtime'] = time();
+        $apiModel = model('Apilog');
+        $apiModel->createLogs($param);
+    }
     /**
      * @param $data
      * @param int $act   添加还是编辑操作 1为添加

@@ -46,13 +46,13 @@ class Contact extends Model
             $map['status'] = array('eq',1);
             if($w['user_role'] == 'Charge')
             {
-                $map['is_charge'] = array('eq',$w['user_role']);
+                $map['is_charge'] = array('eq',1);
             }
             $fields = "code contact_code,user_name";
         }
         //如果是筛选授权
         if($group){
-            $data = $this->field("distinct user_email,user_name,user_phone")->where($map)->order('status desc')->select();
+            $data = $this->field("code user_code,user_email,user_name,user_phone")->where($map)->order('status desc')->select();
         }else{
             //获取满足条件的数据总数
             $dataCount = $this->where($map)->count();

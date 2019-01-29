@@ -12,6 +12,8 @@ use \app\api\controller\Country;
 use \app\api\controller\Industry;
 use \app\api\controller\Basetype;
 use \app\api\controller\Baseapi;
+use \think\config;
+
 /**
  * @title 买家集团模块2.0
  * Class Group
@@ -275,6 +277,11 @@ class Group extends Baseapi
     /**
      * @title 集团激活接口
      * @desc  {"0":"接口地址：http://api.master.com/group/active/jt_1548139507","1":"请求方式：GET","2":"接口备注：必须传入keys值用于通过加密验证"}
+     * @returnDemo {"code":200,"data":"集团激活成功","error":""}
+     * @param {"name":"code","type":"string","required":true,"desc":"管理的集团编码"}
+     * @return {"name":"code","type":"int","required":true,"desc":"返回码：200成功,其他失败","level":1}
+     * @return {"name":"data","type":"string","desc":"返回的数据内容","level":1}
+     * @return {"name":"err","type":"string","desc":"返回的错误信息","level":1}
      */
     public function active()
     {
@@ -287,13 +294,45 @@ class Group extends Baseapi
         //获取邮件模板
         $extendModel = model("GroupExtend");
         $extendData = $extendModel->get_data_by_groupcode($gorupCode);
-        $content = '您的二级域名为：'.$extendData['subdomain']."域名邮箱为：".$extendData['group_email'];
-        echo $content;
-        //需要发送的邮件数组为:
-        $emails = array_column($active_data,'user_email');
-        //调用发送邮件函数
-        $email = new \app\common\library\Email;
-        $email->subject('集团激活邮件')->to('939942478@qq.com')->message($content)->send();
+        $content = '您的二级域名为：'.$extendData['subdomain']."<br/>域名邮箱为：".$extendData['group_email'];
+
+        $temp_name = 'register_invite';
+        $language = 'chinese';
+        $temp_info = $extendModel->get_email_template($temp_name,$language);
+
+        if(!empty($temp_info)){
+            $subject = $temp_info['subject'];
+            $body = $temp_info['content'];
+        }else{
+            return resultArray(['error' => '未找到邮件模板']);
+        }
+        $emailModel = new \app\common\library\Email;
+        $send_mail_logs = array();
+        foreach($active_data as $email_info)
+        {
+            $to_email = $email_info['user_email'];
+            $content .= "<br/>用户名为：".$email_info['user_name'];
+
+            //发送日志
+            $tmp_data['template_code'] = $temp_info['id'];
+            $tmp_data['from_email'] = Config::get('site.mail_from');
+            $tmp_data['to_email'] = $to_email;
+            $tmp_data['subject'] = $subject;
+            $tmp_data['content'] = $content;
+            $tmp_data['status'] = '0';
+            $tmp_data['createtime'] = time();
+            //调用发送邮件函数
+            $send_mail_result = $emailModel->subject($subject)->to($to_email)->message($content)->send();
+            if($send_mail_result){
+                $tmp_data['status'] = '1';
+            }
+            array_push($send_mail_logs,$tmp_data);
+        }
+        if($extendModel->createLogs($send_mail_logs)){
+            return resultArray(['data' => '集团激活成功']);
+        }else{
+            return resultArray(['error' => '邮件日志记录失败']);
+        }
     }
 
 

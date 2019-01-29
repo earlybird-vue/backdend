@@ -7,8 +7,10 @@
 
 namespace app\api\controller;
 use \app\admin\controller\ApiCommon;
+use \app\api\controller\Baseapi;
+use  \think\Request;
 
-class Index
+class Index extends Baseapi
 {
     public function index()
     {

@@ -36,7 +36,7 @@ class AuthorizedUser extends Model
         if(isset($w['status'])){
             $map['status'] = array('eq',(int)$w['status']);
         }
-        return  $this->field('user_email')->where($map)->select();
+        return  $this->field('user_code')->where($map)->select();
     }
 
     /**
@@ -54,10 +54,12 @@ class AuthorizedUser extends Model
 
         $map['authorized.status'] = array('eq',1);
         $field = "market.code market_code,market.company_code,market.group_code,market.market_name,";
-        $field .= "authorized.user_email,authorized.code authorized_code,authorized.status authorized_status";
+        $field .= "user.user_name,user.user_email,user.user_phone,";
+        $field .= "authorized.user_code,authorized.code authorized_code,authorized.status authorized_status";
         $list = $this
             ->alias('authorized')
             ->join('__MARKET_INFO__ market', 'authorized.market_code = market.code', 'LEFT')
+            ->join('__GROUP_USER_INFO__ user','authorized.user_code = user.code','LEFT')
             ->field($field)->where($map)->select();
         return  json_decode(json_encode($list),true);
     }
