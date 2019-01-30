@@ -48,9 +48,7 @@ return [
     //  【买家】读取公司信息
     //'company/get' => ['api/company/read',['method'=>'GET']],
     //  【买家】添加公司信息
-    'company/create' => ['api/company/save',['method'=>'POST']],
     //  【买家】更新公司信息
-    'company/update' => ['api/company/update',['method'=>'POST']],
 
 
     /**********  以下是最新的接口路由 **********/
@@ -69,6 +67,11 @@ return [
     'company/create' => ['api/company/save',['method'=>'POST']],
     'company/update' => ['api/company/update',['method'=>'POST']],
     'company/delete' => ['api/company/delete',['method'=>'POST']],
+    'company/gettoken/:code' => ['api/company/gettoken',['method'=>'GET']],
+    'company/flushkey/:code' => ['api/company/reflushk_key',['method'=>'GET']],
+
+
+
 
     'contact/list/:code' => ['api/contact/index',['method'=>'GET']],
     'contact/simplelist/:code' => ['api/contact/simple_list',['method'=>'GET']],
@@ -98,7 +101,8 @@ return [
     'index/contact' =>  ['api/index/contact',['method'=>'GET']],
     'index/market'  =>  ['api/index/market',['method'=>'GET']],
     'index/extend' => ['api/index/extend',['method'=>'GET']],
-    'index/finance' => ['api/index/finance',['method'=>'GET']]
+    'index/finance' => ['api/index/finance',['method'=>'GET']],
+    'index/sync' => ['api/index/auto_sync',['method'=>'GET']]
 
 
 ];

@@ -766,6 +766,7 @@ CREATE TABLE `oa_company_info`  (
   `group_code` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '公司所属的集团编码对应oa_group_info表中的code字段',
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公司中文名称',
   `en_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公司英文名称',
+  `sync_type` tinyint(1) NULL DEFAULT 0 COMMENT '数据同步更新方式：1为自动;0为手动；用于判断是否需要配置接口授权信息',
   `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `create_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '创建人',
   `status` tinyint(2) NOT NULL DEFAULT 1 COMMENT '公司是否有效:1为有效,0为无效',
@@ -776,14 +777,30 @@ CREATE TABLE `oa_company_info`  (
 -- ----------------------------
 -- Records of oa_company_info
 -- ----------------------------
-INSERT INTO `oa_company_info` VALUES (1, 'gs_1548153426', 'jt_1548139507', '百度', 'baidu', '2019-01-22 18:37:06', 'admin', 0);
-INSERT INTO `oa_company_info` VALUES (2, 'gs_98029314963931166', 'jt_1548139507', '腾讯u', 'qqen', '2019-01-23 09:14:22', 'admin', 1);
-INSERT INTO `oa_company_info` VALUES (3, 'gs_98029314963931183', 'jt_1548139507', '京东啊', 'jda', '2019-01-24 15:06:04', 'admin', 0);
-INSERT INTO `oa_company_info` VALUES (4, 'gs_98029314963931235', 'jt_98029314963931232', '妮妮', 'nini', '2019-01-24 17:40:28', 'admin', 1);
-INSERT INTO `oa_company_info` VALUES (5, 'gs_98029314963931236', 'jt_98029314963931232', '妮妮', 'nini', '2019-01-24 17:40:55', 'admin', 1);
-INSERT INTO `oa_company_info` VALUES (6, 'gs_98029314963931240', 'jt_98029314963931237', '王者荣耀', 'wangzhe', '2019-01-24 17:58:26', 'admin', 1);
-INSERT INTO `oa_company_info` VALUES (7, 'gs_98029314963931244', 'jt_98029314963931241', '刺激战场', 'ciji', '2019-01-24 18:06:10', 'admin', 1);
-INSERT INTO `oa_company_info` VALUES (8, 'gs_98029314963931249', 'jt_98029314963931246', '妮妮', 'nini', '2019-01-24 18:10:10', 'admin', 1);
+INSERT INTO `oa_company_info` VALUES (1, 'gs_15488370176758973', 'jt_1548139507', '腾讯', 'tx', 1, '2019-01-30 16:30:17', 'admin', 1);
+INSERT INTO `oa_company_info` VALUES (2, 'gs_15488370171166977', 'jt_1548139507', '百度', 'bd', 1, '2019-01-30 16:30:17', 'admin', 1);
+
+-- ----------------------------
+-- Table structure for oa_company_secrekey_info
+-- ----------------------------
+DROP TABLE IF EXISTS `oa_company_secrekey_info`;
+CREATE TABLE `oa_company_secrekey_info`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `company_code` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公司的唯一编码',
+  `app_id` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分配给AUTH服务的唯一标记符，用于对方调用接口认证授权使用',
+  `app_secret` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分配给 app_id 的加密私钥',
+  `api_uri` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分配给 app_id 可访问的接口URI地址',
+  `create_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '创建人',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `company_code`(`company_code`) USING BTREE COMMENT '关联外部的索引'
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '公司授权同步的密钥信息表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oa_company_secrekey_info
+-- ----------------------------
+INSERT INTO `oa_company_secrekey_info` VALUES (1, 'gs_15488370176758973', 'wxb11529c136998cb6', 'SKVvgKlpCGPID3J0zRBO72FLEht8xq1Xo4ukeQT6fZ', 'api.master.com', 'admin', '2019-01-30 16:30:17');
+INSERT INTO `oa_company_secrekey_info` VALUES (2, 'gs_15488370171166977', 'wxb11529c136998cb6', 'SKn62tAh4QuB0NLkFTqYipgsKvcemlyDC38M5PgwOz', 'api.master.com', 'admin', '2019-01-30 17:07:20');
 
 -- ----------------------------
 -- Table structure for oa_customer_cashpool
@@ -1417,9 +1434,7 @@ CREATE TABLE `oa_market_authorized_user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '公司市场信息记录的自增id',
   `code` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '授权映射信息的随机编码',
   `market_code` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '市场的唯一编码',
-  `user_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '授权用户的邮箱(由于一个邮箱可以对应多个,所以不关联用户唯一编码)',
-  `user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用来显示在业务数据的称呼(姓+名如张三)',
-  `user_phone` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户联系电话',
+  `user_code` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '授权邮箱的用户编码',
   `create_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '创建人',
   `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `status` tinyint(2) NOT NULL DEFAULT 1 COMMENT '授权状态; 1: 正常，已授权; 0:已取消授权(授权作废了)',
@@ -1430,10 +1445,10 @@ CREATE TABLE `oa_market_authorized_user`  (
 -- ----------------------------
 -- Records of oa_market_authorized_user
 -- ----------------------------
-INSERT INTO `oa_market_authorized_user` VALUES (1, 'sq_15482320331838', 'mk_1548232033', '187@qq.com', '', '', 'admin', '2019-01-23 16:27:13', 1);
-INSERT INTO `oa_market_authorized_user` VALUES (2, 'sq_15482320333662', 'mk_1548232033', '15@qq.com', '', '', 'admin', '2019-01-23 16:27:13', 0);
-INSERT INTO `oa_market_authorized_user` VALUES (4, 'sq_98029314963931186', 'mk_98029314963931185', '15@qq.com', '', '', 'admin', '2019-01-24 15:12:41', 0);
-INSERT INTO `oa_market_authorized_user` VALUES (5, 'sq_98029314963931190', 'mk_98029314963931185', '187@qq.com', '', '', 'admin', '2019-01-24 15:17:04', 0);
+INSERT INTO `oa_market_authorized_user` VALUES (1, 'sq_15482320331838', 'mk_1548232033', '187@qq.com', 'admin', '2019-01-23 16:27:13', 1);
+INSERT INTO `oa_market_authorized_user` VALUES (2, 'sq_15482320333662', 'mk_1548232033', '15@qq.com', 'admin', '2019-01-23 16:27:13', 0);
+INSERT INTO `oa_market_authorized_user` VALUES (4, 'sq_98029314963931186', 'mk_98029314963931185', '15@qq.com', 'admin', '2019-01-24 15:12:41', 0);
+INSERT INTO `oa_market_authorized_user` VALUES (5, 'sq_98029314963931190', 'mk_98029314963931185', '187@qq.com', 'admin', '2019-01-24 15:17:04', 0);
 
 -- ----------------------------
 -- Table structure for oa_market_info

@@ -34,7 +34,7 @@ class Company extends Model
         //获取满足条件的数据总数
         $dataCount = $this->where($map)->count();
 
-        $list = $this->field('code company_code,name,en_name,group_code,status')->where($map)->order('status desc')->select();
+        $list = $this->field('code company_code,name,en_name,group_code,sync_type,status')->where($map)->order('status desc')->select();
         //echo $this->getLastSql();
         $data['list'] = $list;
         $data['data_count'] = $dataCount;
@@ -48,11 +48,20 @@ class Company extends Model
      */
     public function createData($param)
     {
+        $this->startTrans();
         try {
             //公司信息入库
+            if(isset($param['apikeys'])){
+                if(!empty($param['apikeys'])){
+                    DB::name('company_secrekey_info')->insertAll($param['apikeys']);
+                }
+                unset($param['apikeys']);
+            }
             $this->insertAll($param);
+            $this->commit();
             return true;
         } catch(\Exception $e) {
+            $this->rollback();
             $this->error = $e->getMessage();
             return false;
         }
@@ -61,7 +70,7 @@ class Company extends Model
     /**
      * 通过code修改公司信息
      * @param  array   $param  [description]
-     * @code   string
+     * @param string $code
      * @return bool
      */
     public function update_data_by_code($param, $code)
@@ -72,11 +81,18 @@ class Company extends Model
             $this->error = '暂无此数据';
             return false;
         }
+        $this->startTrans();
         try {
+            if(isset($param['apikeys'])){
+                DB::name('company_secrekey_info')->insert($param['apikeys']);
+                unset($param['apikeys']);
+            }
             $this->where($map)->update($param);
+            $this->commit();
             return true;
         } catch(\Exception $e) {
-            $this->error = '编辑失败';
+            $this->rollback();
+            $this->error = '编辑失败'; //$e->getMessage();
             return false;
         }
     }
@@ -87,7 +103,7 @@ class Company extends Model
     public function get_data_by_code($company_code)
     {
         $map['code'] = array('eq',$company_code);
-        $field = "code company_code,name,en_name,group_code,status";
+        $field = "code company_code,name,en_name,group_code,sync_type,status";
         return $this->field($field)->where($map)->find();
     }
 
@@ -97,7 +113,7 @@ class Company extends Model
     public function get_data_by_codes($company_codes)
     {
         $map['code'] = array('in',$company_codes);
-        $field = "code company_code,name,en_name,group_code,status";
+        $field = "code company_code,name,en_name,group_code,sync_type,status";
         return $this->field($field)->where($map)->select();
     }
 
@@ -108,7 +124,7 @@ class Company extends Model
     {
         $uuid = $this->field('UUID_SHORT() id')->find();
         if(empty($uuid)){
-            return time();
+            return time().mt_rand(1000000,9999999);
         }else{
             return $uuid['id'];
         }

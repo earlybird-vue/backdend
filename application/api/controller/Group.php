@@ -7,11 +7,6 @@
 
 namespace app\api\controller;
 use  \think\Request;
-
-use \app\api\controller\Country;
-use \app\api\controller\Industry;
-use \app\api\controller\Basetype;
-use \app\api\controller\Baseapi;
 use \think\config;
 
 /**
@@ -238,7 +233,7 @@ class Group extends Baseapi
     /**
      * @title 管理集团数据接口
      * @desc  {"0":"接口地址：http://api.master.com/group/show/jt_1548139507","1":"请求方式：GET","2":"接口备注：必须传入keys值用于通过加密验证"}
-     * @returnDemo {"code":200,"data":{"group_info":{"code":"jt_1548139507","name":"集团2","web_site":"www.jt2.com","group_number":"jituan013","address":"集团2的地址","industry_id":1,"country_id":2,"type_id":3,"contact_phone":"18588209091","fiscal_month":4,"status":1},"company_info":[{"company_code":"gs_98029314963931166","name":"腾讯u","en_name":"qqen","group_code":"jt_1548139507","status":1},{"company_code":"gs_1548153426","name":"百度","en_name":"baidu","group_code":"jt_1548139507","status":0},{"company_code":"gs_98029314963931183","name":"京东啊","en_name":"jda","group_code":"jt_1548139507","status":0}],"market_info":[{"market_code":"mk_1548232033","group_code":"jt_1548139507","company_code":"gs_1548153426","market_name":"第一个市场","currency_sign":"$","currency_name":"USD","sync_type":1,"charge_user_name":"更新","status":0},{"market_code":"mk_98029314963931185","group_code":"jt_1548139507","company_code":"gs_1548153426","market_name":"第一个市场","currency_sign":"$","currency_name":"USD","sync_type":1,"charge_user_name":"更新","status":1}],"contact_info":[{"contact_code":"ct_1548212016","user_name":"刘军","user_position":"PHP管理","user_phone":"18588209321","user_email":"939942478@qq.com","user_role":"Financial","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931168","user_name":"刘林燕","user_position":"PHP研发","user_phone":"18588209325","user_email":"187@qq.com","user_role":"Charge","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931169","user_name":"将林燕","user_position":"PHP经理","user_phone":"18588209326","user_email":"15@qq.com","user_role":"Charge","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931170","user_name":"王艳梅","user_position":"PHP经理","user_phone":"18588209326","user_email":"15@qq.com","user_role":"Charge","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931179","user_name":"王总","user_position":"项目经理","user_phone":"18680890919","user_email":"1874299065@qq.com","user_role":"Financial","group_code":"jt_1548139507","status":1}],"finance_info":{"finance_code":"cash_15483096291974","group_code":"jt_1548139507","sale_volume_id":1,"sale_volume":"10001","purhchase_volume_id":2,"purhchase_volume":"20002","cashflow_volume_id":3,"cashflow_volume":"30003","status":0},"extend_info":{"extend_code":"ex_1548311813","group_code":"jt_1548139507","subdomain":"newapi.master.com","logo":"1","group_email":"email.liuliny.com","status":1}},"error":""}
+     * @returnDemo {"0":{"code":200,"data":{"group_info":{"code":"jt_1548139507","name":"集团2","web_site":"www.jt2.com","group_number":"jituan013","address":"集团2的地址","industry_id":1,"country_id":2,"type_id":3,"contact_phone":"18588209091","fiscal_month":4,"status":1},"company_info":[{"company_code":"gs_98029314963931166","name":"腾讯u","en_name":"qqen","group_code":"jt_1548139507","status":1},{"company_code":"gs_1548153426","name":"百度","en_name":"baidu","group_code":"jt_1548139507","status":0},{"company_code":"gs_98029314963931183","name":"京东啊","en_name":"jda","group_code":"jt_1548139507","status":0}],"market_info":[{"market_code":"mk_1548232033","group_code":"jt_1548139507","company_code":"gs_1548153426","market_name":"第一个市场","currency_sign":"$","currency_name":"USD","sync_type":1,"charge_user_name":"更新","status":0},{"market_code":"mk_98029314963931185","group_code":"jt_1548139507","company_code":"gs_1548153426","market_name":"第一个市场","currency_sign":"$","currency_name":"USD","sync_type":1,"charge_user_name":"更新","status":1}],"contact_info":[{"contact_code":"ct_1548212016","user_name":"刘军","user_position":"PHP管理","user_phone":"18588209321","user_email":"939942478@qq.com","user_role":"Financial","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931168","user_name":"刘林燕","user_position":"PHP研发","user_phone":"18588209325","user_email":"187@qq.com","user_role":"Charge","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931169","user_name":"将林燕","user_position":"PHP经理","user_phone":"18588209326","user_email":"15@qq.com","user_role":"Charge","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931170","user_name":"王艳梅","user_position":"PHP经理","user_phone":"18588209326","user_email":"15@qq.com","user_role":"Charge","group_code":"jt_1548139507","status":1},{"contact_code":"ct_98029314963931179","user_name":"王总","user_position":"项目经理","user_phone":"18680890919","user_email":"1874299065@qq.com","user_role":"Financial","group_code":"jt_1548139507","status":1}],"finance_info":{"finance_code":"cash_15483096291974","group_code":"jt_1548139507","sale_volume_id":1,"sale_volume":"10001","purhchase_volume_id":2,"purhchase_volume":"20002","cashflow_volume_id":3,"cashflow_volume":"30003","status":0},"extend_info":{"extend_code":"ex_1548311813","group_code":"jt_1548139507","subdomain":"newapi.master.com","logo":"1","group_email":"email.liuliny.com","status":1}},"error":""}}
      * @param {"name":"f_code","type":"string","required":true,"desc":"管理的集团编码"}
      * @return {"name":"code","type":"int","required":true,"desc":"返回码：200成功,其他失败","level":1}
      * @return {"name":"data","type":"array","desc":"返回的数据内容","level":1}
@@ -277,8 +272,7 @@ class Group extends Baseapi
     /**
      * @title 集团激活接口
      * @desc  {"0":"接口地址：http://api.master.com/group/active/jt_1548139507","1":"请求方式：GET","2":"接口备注：必须传入keys值用于通过加密验证"}
-     * @returnDemo {"code":200,"data":"集团激活成功","error":""}
-     * @param {"name":"code","type":"string","required":true,"desc":"管理的集团编码"}
+     * @returnDemo {"0":{"code":200,"data":"集团激活成功","error":""}}
      * @return {"name":"code","type":"int","required":true,"desc":"返回码：200成功,其他失败","level":1}
      * @return {"name":"data","type":"string","desc":"返回的数据内容","level":1}
      * @return {"name":"err","type":"string","desc":"返回的错误信息","level":1}
@@ -335,7 +329,16 @@ class Group extends Baseapi
         }
     }
 
-
+    /**
+     * @title 生成集团app_id,encrypt_key,api_uri
+     * @desc  {"0":"接口地址：http://api.master.com/group/create_key/jt_1548139507","1":"请求方式：GET"}
+     * @postBody {"0":{"f_code":"jt_1548139507"}}
+     * @returnDemo {"code":200,"data":"授权相关证件生成成功","error":""}
+     * @param {"name":"f_code","type":"string","required":true,"desc":"集团的唯一编码"}
+     * @return {"name":"code","type":"int","required":true,"desc":"返回码：200成功,其他失败","level":1}
+     * @return {"name":"data","type":"string","desc":"成功返回内容","level":1}
+     * @return {"name":"err","type":"string","desc":"返回的错误信息","level":1}
+     */
 
 
     /****************************************  私有方法star  ****************************************/
@@ -357,9 +360,5 @@ class Group extends Baseapi
         $data['types'] = $types['data'];
         return $data;
     }
-
-    //前端数据处理
-
-
 }
  
