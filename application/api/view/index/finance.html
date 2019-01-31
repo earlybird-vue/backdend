@@ -12,9 +12,12 @@
 </div>
 <div class="container"><hr style="color: #9d9d9d"></div>
 <div class="container">
-    <a href="/finance/get/jt_1548139507">获取集团财务明细数据接口【finance/get/jt_1548139507】</a>
+    <p>
+        <a href="/finance/get/jt_1548139507">接口1：获取集团财务明细数据接口【finance/get/jt_1548139507】</a>
+    </p>
+    <hr/>
     <form action="/finance/create" method="post">
-        <h1>财务信息添加</h1>
+        <h1>接口2：财务信息添加</h1>
         <table>
             <tr>
                 <td>年销售额范围ID：<input type="text" name="f_sale_volume_id" value="1"></td>
@@ -29,12 +32,12 @@
                 <td>资金流状况：<input type="text" name="f_cashflow_volume" value="30000"></td>
             </tr>
             <tr><td colspan="2">集团编码:<input type="text" name="f_group_code" value="jt_1548139507"></td> </tr>
-            <tr><td colspan="2"><input type="submit" value="提交财务信息(接口finance/create)"></td></tr>
+            <tr><td colspan="2"><input type="submit" value="添加财务信息(接口finance/create)"></td></tr>
         </table>
     </form>
     <hr/>
     <form action="/finance/update" method="post">
-        <h1>财务信息编辑</h1>
+        <h1>接口3：3. 更新集团财务数据接口</h1>
         <table>
             <tr>
                 <td>年销售额范围ID：<input type="text" name="f_sale_volume_id" value="1"></td>
@@ -54,10 +57,10 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="text" name="f_code" value="cash_15483096291974">
+                    <input type="text" name="f_code" value="cw_15489162448561378">
                 </td>
             </tr>
-            <tr><td colspan="2"><input type="submit" value="更新财务信息(接口finance/update)"></td></tr>
+            <tr><td colspan="2"><input type="submit" value="更新集团财务数据(接口finance/update)"></td></tr>
         </table>
         <p></p>
     </form>

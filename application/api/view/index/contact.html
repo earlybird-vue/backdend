@@ -12,55 +12,85 @@
 </div>
 <div class="container"><hr style="color: #9d9d9d"></div>
 <div class="container">
-    <a href="/contact/list/jt_1548139507">读取集团下的联系人列表【contact/list/jt_1548139507】</a>
-    <br/>
-    <a href="/contact/get/ct_1548212016">获取联系人明细数据接口【contact/get/ct_1548212016】</a>
-    <br/>
+    <p>
+        <a href="/contact/list/jt_1548139507">接口1：读取集团下的联系人列表【contact/list/jt_1548139507】</a>
+    </p>
+    <p>
+        <a href="/contact/get/ct_1548383615">接口2：获取联系人明细数据接口【contact/get/ct_1548383615】</a>
+    </p>
     <form action="/contact/create" method="post">
-        <h1>联系人信息添加</h1>
-        <input type="text" name="f_last_name" value="刘">
-        <input type="text" name="f_first_name" value="林燕">
-        <input type="text" name="f_user_position" value="PHP研发"><br/>
-        <input type="text" name="f_user_phone" value="18588209320">
-        <input type="text" name="f_user_email" value="939942478@qq.com">
-        <input type="checkbox" name="f_user_role[]" value="enterprise">企业负责人
-        <input type="checkbox" name="f_user_role[]" value="financial">财务负责人
-        <input type="checkbox" name="f_user_role[]" value="charge">清算负责人
-        <input type="text" name="f_group_code" value="jt_1548139507"><br/>
-        <input type="submit" value="提交联系人信息">
-        <p></p>
+        <h1>接口3：新增联系人数据接口</h1>
+        <table>
+            <tr>
+                <td>姓氏：<input type="text" name="f_last_name" value="刘"></td>
+                <td>名字：<input type="text" name="f_first_name" value="林燕"></td>
+            </tr>
+            <tr>
+                <td>职位：<input type="text" name="f_user_position" value="PHP研发"></td>
+                <td>电话：<input type="text" name="f_user_phone" value="18588209320"></td>
+            </tr>
+            <tr>
+                <td>邮箱：<input type="text" name="f_user_email" value="939942478@qq.com"></td>
+                <td>企业负责人：<input type="checkbox" name="f_user_role[]" value="enterprise"></td>
+            </tr>
+            <tr>
+                <td>财务负责人：<input type="checkbox" name="f_user_role[]" value="financial"></td>
+                <td>清算负责人：<input type="checkbox" name="f_user_role[]" value="charge"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    集团编码：<input type="text" name="f_group_code" value="jt_1548139507">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="新增联系人"></td>
+            </tr>
+        </table>
     </form>
     <hr/>
     <form action="/contact/update" method="post">
-        <h1>联系人信息编辑</h1>
-        <input type="text" name="f_last_name" value="刘">
-        <input type="text" name="f_first_name" value="林燕">
-        <input type="text" name="f_user_position" value="PHP研发"><br/>
-        <input type="text" name="f_user_phone" value="18588209320">
-        <input type="text" name="f_user_email" value="939942478@qq.com">
-        <input type="text" name="f_user_role" value="Financial"><br/>
-        <input type="text" name="f_status" value="1">
-        <input type="text" name="f_code" value="ct_1548212016">
-        <input type="submit" value="更新联系人信息">
-        <p></p>
+        <h1>接口4：更新联系人信息</h1>
+        <table>
+            <tr>
+                <td>姓氏：<input type="text" name="f_last_name" value="刘"></td>
+                <td>名字：<input type="text" name="f_first_name" value="林燕"></td>
+            </tr>
+            <tr>
+                <td>职位：<input type="text" name="f_user_position" value="PHP研发"></td>
+                <td>电话：<input type="text" name="f_user_phone" value="18588209320"></td>
+            </tr>
+            <tr>
+                <td>邮箱：<input type="text" name="f_user_email" value="939942478@qq.com"></td>
+                <td>企业负责人：<input type="checkbox" name="f_user_role[]" value="enterprise"></td>
+            </tr>
+            <tr>
+                <td>财务负责人：<input type="checkbox" name="f_user_role[]" value="financial"></td>
+                <td>清算负责人：<input type="checkbox" name="f_user_role[]" value="charge"></td>
+            </tr>
+            <tr>
+                <td>联系人状态:<input type="text" name="f_status" value="1"></td>
+                <td>联系人编码：<input type="text" name="f_code" value="ct_15489033479418238"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="更新联系人信息"></td>
+            </tr>
+        </table>
     </form>
     <hr/>
     <form action="/contact/delete" method="post">
-        <h1>删除联系人</h1>
-        <input type="text" name="f_code" value="jt_1548139507">
+        <h1>接口5：删除联系人数据接口</h1>
+        <input type="text" name="f_code" value="ct_15489033479418238">
         <input type="submit" value="删除联系人信息">
         <p></p>
     </form>
-    <br/>
-    <a href="/contact/simplelist/jt_1548139507">获取该集团下可用被授权的联系人邮箱列表【contact/simplelist/jt_1548139507】</a>
-    <br/>
-    <a href="/contact/getCharge/jt_1548139507">添加市场信息中获取集团清算负责人以及授权邮箱接口【contact/getCharge/jt_1548139507】</a>
+    <hr/>
     <p>
-        以上为集团联系人模块
+        <a href="/contact/simplelist/jt_1548139507">接口6：获取该集团下可用被授权的联系人邮箱列表【contact/simplelist/jt_1548139507】</a>
     </p>
     <p>
-        以上为集团联系人模块
+        <a href="/contact/getCharge/jt_1548139507">接口7：添加市场信息中获取集团清算负责人以及授权邮箱接口【contact/getCharge/jt_1548139507】</a>
     </p>
+    <hr/>
 </div>
 </body>
 </html>

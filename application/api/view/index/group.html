@@ -12,58 +12,91 @@
 </div>
 <div class="container"><hr style="color: #9d9d9d"></div>
 <div class="container">
-    <a href="/group/list">查看集团列表【group/list】</a>
-    <br/>
-    <a href="/group/get/jt_1548139507">查看集团名称明细【group/get/jt_1548139507】</a>
-    <br/>
+    <p>
+        <a href="/group/list">接口1：集团列表【group/list】</a>
+    </p>
+
+    <p>
+        <a href="/group/get/jt_1548139507">接口2：添加集团/编辑集团初始化数据接口【group/get/jt_1548139507】</a>
+    </p>
     <form action="/group/create" method="post">
-        <h1>集团信息添加</h1>
-        <input type="text" name="f_name" value="集团1">
-        <input type="text" name="f_web_site" value="www.jt.com">
-        <input type="text" name="f_group_number" value="jituan001"><br/>
-        <input type="text" name="f_industry_id" value="1">
-        <input type="text" name="f_country_id" value="2">
-        <input type="text" name="f_type_id" value="3"><br/>
-        <input type="text" name="f_contact_phone" value="18588209091">
-        <input type="text" name="f_address" value="集团地址">
-        <input type="text" name="f_fiscal_month" value="4"><br/>
-        <input type="submit" value="提交集团信息">
+        <h1>接口3：新增集团数据接口</h1>
+        <table>
+            <tr>
+                <td>集团名称：<input type="text" name="f_name" value="集团1"></td>
+                <td>集团网站：<input type="text" name="f_web_site" value="www.jt.com"></td>
+            </tr>
+            <tr>
+                <td>集团编号：<input type="text" name="f_group_number" value="jituan001"></td>
+                <td>行业的ID：<input type="text" name="f_industry_id" value="1"></td>
+            </tr>
+            <tr>
+                <td>国家的ID：<input type="text" name="f_country_id" value="2"></td>
+                <td>类型的ID：<input type="text" name="f_type_id" value="3"></td>
+            </tr>
+            <tr>
+                <td>联系电话：<input type="text" name="f_contact_phone" value="18588209091"></td>
+                <td>联系地址：<input type="text" name="f_address" value="集团地址"></td>
+            </tr>
+            <tr>
+                <td colspan="2">对账日期：<input type="text" name="f_fiscal_month" value="4"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="提交集团信息"></td>
+            </tr>
+        </table>
         <p></p>
     </form>
     <hr/>
     <form action="/group/update" method="post">
-        <h1>集团信息编辑</h1>
-        <input type="text" name="f_name" value="集团1">
-        <input type="text" name="f_web_site" value="www.jt.com">
-        <input type="text" name="f_group_number" value="jituan001"><br/>
-        <input type="text" name="f_industry_id" value="1">
-        <input type="text" name="f_country_id" value="2">
-        <input type="text" name="f_type_id" value="3"><br/>
-        <input type="text" name="f_contact_phone" value="18588209091">
-        <input type="text" name="f_address" value="集团地址">
-        <input type="text" name="f_fiscal_month" value="4"><br/>
-        <input type="text" name="f_code" value="jt_1548139507">
-        <input type="submit" value="更新集团信息">
-        <p></p>
+        <h1>接口4：更新集团数据接口</h1>
+        <table>
+            <tr>
+                <td>集团名称：<input type="text" name="f_name" value="信享科技"></td>
+                <td>集团网站：<input type="text" name="f_web_site" value="www.xinxian.com"></td>
+            </tr>
+            <tr>
+                <td>集团编号：<input type="text" name="f_group_number" value="xinxian1"></td>
+                <td>行业的ID：<input type="text" name="f_industry_id" value="1"></td>
+            </tr>
+            <tr>
+                <td>国家的ID：<input type="text" name="f_country_id" value="1"></td>
+                <td>类型的ID：<input type="text" name="f_type_id" value="4"></td>
+            </tr>
+            <tr>
+                <td>联系电话：<input type="text" name="f_contact_phone" value="18682038500"></td>
+                <td>联系地址：<input type="text" name="f_address" value="集团地址"></td>
+            </tr>
+            <tr>
+                <td>对账日期：<input type="text" name="f_fiscal_month" value="8"></td>
+                <td>集团编码：<input type="text" name="f_code" value="jt_98042625621229579"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="更新集团信息"></td>
+            </tr>
+        </table>
     </form>
     <hr/>
     <form action="/group/delete" method="post">
-        <h1>删除集团</h1>
+        <h1>接口5：删除集团数据接口</h1>
         <input type="text" name="f_code" value="jt_1548139507">
         <input type="submit" value="删除集团信息">
         <p></p>
     </form>
     <hr/>
     <form action="/group/deletes" method="post">
-        <h1>批量删除集团</h1>
+        <h1>接口6：批量删除集团数据接口</h1>
         <input type="checkbox" name="f_codes[]" value="jt_1548139507">集团名称
         <input type="checkbox" name="f_codes[]" value="jt_98029314963931152">集团5
         <input type="submit" value="批量删除">
         <p></p>
     </form>
-    <br/>
-    <a href="/group/show/jt_1548139507">管理集团接口【group/show/jt_1548139507】</a>
-    <br/>
+    <p>
+        <a href="/group/show/jt_1548139507">接口7. 管理集团数据接口【group/show/jt_1548139507】</a>
+    </p>
+    <p>
+        <a href="/group/active/jt_1548139507">接口8：集团激活接口</a>
+    </p>
 </div>
 </body>
 </html>

@@ -82,7 +82,7 @@ class Finance extends Baseapi
         {
             return resultArray(['error' => '该集团已经存在财务息,请直接编辑']);
         }
-        $data['code'] = 'f_'.$financeModel->buildUUID();
+        $data['code'] = 'cw_'.$financeModel->buildUUID();
         $resData = $financeModel->createData($data);
         if (!$resData) {
             return resultArray(['error' => $financeModel->getError()]);

@@ -16,15 +16,18 @@
 </div>
 <div class="container"><hr style="color: #9d9d9d"></div>
 <div class="container">
-    <a href="/market/list/gs_1548153426">读取公司下的市场列表【market/list/gs_1548153426】</a>
+    <p>
+        <a href="/market/list/gs_15488370176758973">接口1：读取公司下的市场列表【market/list/gs_15488370176758973】</a>
+    </p>
+
     <br/>
     <form action="/market/create" method="post">
-        <h1>公司市场添加</h1>
+        <h1>接口2：添加市场信息</h1>
         <table>
             <tr>
                 <td>集团编码：<input type="text" name="f_group_code" value="jt_1548139507"></td>
-                <td>公司编码：<input type="text" name="f_company_code" value="gs_1548153426"></td>
-                <td>市场名称：<input type="text" name="f_market_name" value="第一个市场"></td>
+                <td>公司编码：<input type="text" name="f_company_code" value="gs_15488370176758973"></td>
+                <td>市场名称：<input type="text" name="f_market_name" value="腾讯音乐"></td>
 
             </tr>
             <tr>
@@ -38,29 +41,35 @@
             </tr>
             <tr>
                 <td>市场备注信息：<input type="text" name="f_memo" value="1"></td>
-                <td>清算负责人编码：<input type="text" name="f_charge_user_code" value="ct_98029314963931168">
-                <td>清算负责人姓名：<input type="text" name="f_charge_user_name" value="刘林燕"></td>
+                <td colspan="2">
+                    <a href="/contact/getCharge/jt_1548139507" target="_blank">查看集团清算负责人以及授权邮箱接口</a>
                 </td>
             </tr>
             <tr>
-                <td>给邮箱用户授权：
-                    <input type="checkbox" name="f_authorized_user_email[]" value="187@qq.com">187@qq.com
-                    <input type="checkbox" name="f_authorized_user_email[]" value="15@qq.com">15@qq.com
+                <td>清算负责人编码：<input type="text" name="f_charge_user_code" value="ct_15489033479418238">
+                <td colspan="2">清算负责人姓名：<input type="text" name="f_charge_user_name" value="刘林燕"></td>
+            </tr>
+            <tr>
+                <td colspan="3">给邮箱用户授权：
+                    <input type="checkbox" name="f_authorized_user_code[]" value="ct_15489033479418238">939942478@qq.com
+                    <input type="checkbox" name="f_authorized_user_code[]" value="ct_98042625621229582">1874299065@qq.com
                 </td>
             </tr>
             <tr><td colspan="3"><input type="submit" value="添加市场信息(接口market/create)"></td></tr>
         </table>
     </form>
     <hr/>
-    <a href="/market/get/mk_98029314963931185">读取市场信息接口【market/get/mk_98029314963931185】</a>
-    <br/>
+    <p>
+        <a href="/market/get/mk_15489065116281903">接口3：读取市场信息接口【market/get/mk_15489065116281903】</a>
+    </p>
+    <hr/>
     <form action="/market/update" method="post">
-        <h1>公司市场编辑</h1>
+        <h1>接口4：编辑市场信息</h1>
         <table>
             <tr>
                 <td>集团编码：<input type="text" name="f_group_code" value="jt_1548139507"></td>
-                <td>公司编码：<input type="text" name="f_company_code" value="gs_1548153426"></td>
-                <td>市场名称：<input type="text" name="f_market_name" value="第一个市场"></td>
+                <td>公司编码：<input type="text" name="f_company_code" value="gs_15488370176758973"></td>
+                <td>市场名称：<input type="text" name="f_market_name" value="腾讯音乐"></td>
 
             </tr>
             <tr>
@@ -73,26 +82,28 @@
                 </td>
             </tr>
             <tr>
-                <td>市场备注信息：<input type="text" name="f_memo" value="1"></td>
-                <td>清算负责人编码：<input type="text" name="f_charge_user_code" value="ct_98029314963931168">
-                <td>清算负责人姓名：<input type="text" name="f_charge_user_name" value="更新"></td>
+                <td>市场备注信息：<input type="text" name="f_memo" value="改动"></td>
+                <td>清算负责人编码：<input type="text" name="f_charge_user_code" value="ct_15489033479418238">
+                <td>清算负责人姓名：<input type="text" name="f_charge_user_name" value="刘林燕"></td>
                 </td>
             </tr>
             <tr>
-                <td>给邮箱用户授权：
-                    <input type="checkbox" name="f_authorized_user_email[]" value="187@qq.com">187@qq.com
-                    <input type="checkbox" name="f_authorized_user_email[]" value="15@qq.com">15@qq.com
+                <td>市场编码:<input type="text" value="mk_15489065116281903" name="f_code"></td>
+                <td colspan="2"> 市场状态:<input type="text" value="0" name="f_status"></td>
+            </tr>
+            <tr>
+                <td colspan="3">给邮箱用户授权：
+                    <input type="checkbox" name="f_authorized_user_code[]" value="ct_15489033479418238">939942478@qq.com
+                    <input type="checkbox" name="f_authorized_user_code[]" value="ct_98042625621229582">1874299065@qq.com
                 </td>
-                <td>市场编码:<input type="text" value="mk_1548232033" name="f_code"></td>
-                <td>市场状态:<input type="text" value="0" name="f_status"></td>
             </tr>
             <tr><td colspan="3"><input type="submit" value="更新市场信息(接口market/update)"></td></tr>
         </table>
     </form>
     <hr/>
     <form action="/market/delete" method="post">
-        <h1>删除市场信息</h1>
-        <input type="text" name="f_code" value="mk_98029314963931185">
+        <h1>接口5：删除市场数据接口</h1>
+        <input type="text" name="f_code" value="mk_98042625621229586">
         <input type="submit" value="删除市场信息(接口market/delete)">
         <p></p>
     </form>

@@ -12,35 +12,72 @@
 </div>
 <div class="container"><hr style="color: #9d9d9d"></div>
 <div class="container">
-    <a href="/company/list/jt_1548139507">查看集团旗下公司列表【company/list/jt_1548139507】</a>
-    <br/>
-    <a href="/company/get/gs_1548153426">编辑公司初始化数据接口【company/get/gs_1548153426】</a>
-    <br/>
+    <p>
+        <a href="/company/list/jt_1548139507">接口1：读取集团下的公司列表【company/list/jt_1548139507】</a>
+    </p>
+    <p>
+        <a href="/company/get/gs_15488370171166977">接口2：编辑公司初始化数据接口【company/get/gs_15488370171166977】</a>
+    </p>
     <form action="/company/create" method="post">
-        <h1>添加公司</h1>
-        <input type="text" name="f_name" placeholder="请输入公司中文名">
-        <input type="text" name="f_en_name" placeholder="请输入公司英文名"><br>
-        <input type="text" name="f_group_code" placeholder="jt_1548139507" value="jt_1548139507">
-        <p><input type="submit" value="增加新公司"></p>
+        <h1>接口3：新增公司数据接口</h1>
+        <table>
+            <tr>
+                <td>公司中文名：<input type="text" name="f_name" placeholder="请输入公司中文名"></td>
+                <td>公司英文名：<input type="text" name="f_en_name" placeholder="请输入公司英文名"></td>
+            </tr>
+            <tr>
+                <td>集团的编码：<input type="text" name="f_group_code" placeholder="jt_1548139507" value="jt_1548139507"></td>
+                <td>数据的同步：<input type="text" name="f_sync_type" placeholder="自动输入1手动输入0" value="0"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="新增公司">
+                </td>
+            </tr>
+        </table>
     </form>
     <hr/>
     <form action="/company/update" method="post">
-        <h1>编辑公司</h1>
-        <input type="text" name="f_name" placeholder="请输入公司中文名">
-        <input type="text" name="f_en_name" placeholder="请输入公司英文名"><br>
-        <input type="text" name="f_status" placeholder="请输入公司状态">
-        <input type="text" name="f_code" placeholder="gs_98029314963931166" value="gs_98029314963931166">
-        <p><input type="submit" value="更新公司信息"></p>
+        <h1>接口4：更新公司信息</h1>
+        <table>
+            <tr>
+                <td>公司中文名：<input type="text" name="f_name" placeholder="请输入公司中文名"></td>
+                <td>公司英文名：<input type="text" name="f_en_name" placeholder="请输入公司英文名"></td>
+            </tr>
+            <tr>
+                <td>公司的状态：<input type="text" name="f_status" placeholder="请输入公司状态1或者0"></td>
+                <td>公司的编码：<input type="text" name="f_code" placeholder="gs_15488370171166977" value="gs_15488370171166977">
+            </tr>
+            <tr>
+                <td colspan="2">数据的同步：<input type="text" name="f_sync_type" placeholder="自动输入1手动输入0" value="0"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="更新公司">
+                </td>
+            </tr>
+        </table>
     </form>
     <hr/>
     <hr/>
     <form action="/company/delete" method="post">
-        <h1>删除公司</h1>
-        <input type="text" name="f_code" value="gs_15488370176758973">
-        <input type="submit" value="删除公司信息">
-        <p></p>
+        <h1>接口5：删除公司数据接口</h1>
+        <table>
+            <tr>
+                <td>公司编码：<input type="text" name="f_code" value="gs_15488370176758973"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="删除公司信息"></td>
+            </tr>
+        </table>
     </form>
-    <a href="/company/flushkey/gs_15488370176758973">刷新公司key</a>
+    <p>
+        <a href="/company/gettoken/gs_15488370171166977">接口6：读取公司的secret【company/gettoken/gs_15488370171166977】</a>
+    </p>
+    <p>
+        <a href="/company/flushkey/gs_15488370176758973">接口7：更新公司的secret【/company/flushkey/gs_15488370176758973】</a>
+    </p>
+
 </div>
 </body>
 </html>

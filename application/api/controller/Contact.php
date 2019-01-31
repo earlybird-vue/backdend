@@ -113,6 +113,12 @@ class Contact extends Baseapi
     public function save()
     {
         $post_datas = Request::instance()->param();
+        //使得支持单个添加
+        if(!isset($post_datas[0]))
+        {
+            $post_datas = array($post_datas);
+        }
+
         $contactModel = model('Contact');
         $datas = self::_changeDatas($post_datas,1);
         $resData = $contactModel->createData($datas);
@@ -125,7 +131,7 @@ class Contact extends Baseapi
     }
 
     /**
-     * @title 更新公司联系人信息(类似提交表单的目标接口)
+     * @title 更新联系人信息(类似提交表单的目标接口)
      * @desc  {"0":"接口地址：http://api.master.com/contact/update","1":"请求方式：POST","2":"接口备注：必须传入keys值用于通过加密验证"}
      * @postBody {"0":{"f_code":"ct_1548383615","f_last_name":"刘","f_first_name":"林燕","f_user_position":"PHP研发","f_user_phone":"18588209320","f_user_email":"939942478@qq.com","f_user_role":["enterprise","financial"],"f_status":"1"}}
      * @returnDemo {"0":{"code":200,"data":{"contact_code":"ct_1548212016","last_name":"刘","first_name":"林燕","user_name":"刘林燕","user_position":"PHP研发","user_phone":"18588209320","user_email":"939942478@qq.com","is_enterprise":1,"is_financial":1,"is_charge":0,"group_code":"jt_1548139507","status":1},"error":""}}
@@ -186,7 +192,7 @@ class Contact extends Baseapi
      * @desc  {"0":"接口地址：http://api.master.com/contact/delete","1":"请求方式：POST","2":"接口备注：必须传入keys值用于通过加密验证","3":"接口说明：添加编辑集团初始化共用"}
      * @postBody {"0":{"f_code":"ct_1548212016"}}
      * @returnDemo {"0":{"code":200,"data":"删除成功","error":""}}
-     * @param {"name":"f_code","type":"string","required":true,"desc":"公司编码"}
+     * @param {"name":"f_code","type":"string","required":true,"desc":"联系人编码"}
      * @return {"name":"code","type":"int","required":true,"desc":"返回码：200成功,其他失败","level":1}
      * @return {"name":"data","type":"string","desc":"返回的数据内容","level":1}
      * @return {"name":"err","type":"string","desc":"返回的错误信息","level":1}

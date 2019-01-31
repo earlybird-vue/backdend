@@ -10,11 +10,11 @@ return [
     'description' => 'master运营系统 | api接口文档。',
     'template' => 'apple', // 苹果绿:apple 葡萄紫:grape
     'class' => [
-        'app\api\controller\Customer',
+        //'app\api\controller\Customer',
         'app\api\controller\Group',
         'app\api\controller\Company',
-        'app\api\controller\Market',
         'app\api\controller\Contact',
+        'app\api\controller\Market',
         'app\api\controller\Extend',
         'app\api\controller\Finance'
         // ...

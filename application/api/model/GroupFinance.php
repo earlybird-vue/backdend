@@ -89,7 +89,7 @@ class GroupFinance extends Model
     {
         $uuid = $this->field('UUID_SHORT() id')->find();
         if(empty($uuid)){
-            return time().mt_rand(1,9999);
+            return time().mt_rand(1000000,9999999);
         }else{
             return $uuid['id'];
         }

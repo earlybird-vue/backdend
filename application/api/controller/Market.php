@@ -85,7 +85,11 @@ class Market extends Baseapi
     public function save()
     {
         $param = Request::instance()->param();
-
+        //使得支持单个添加
+        if(!isset($param[0]))
+        {
+            $param = array($param);
+        }
         $data  =  self::_changeDatas($param,1);
         $marketModel = model('Market');
         $result_data = $marketModel->createData($data);
@@ -213,32 +217,31 @@ class Market extends Baseapi
         $market_code = $data['code'];
         unset($data['code']);
 
-        //是否删除取消所有邮箱的授权,默认为否
-        $data['delete_all_users'] = 0;
-
-        if(isset($data['authorized_user_code']) && empty($data['authorized_user_code'])){
-            $data['delete_all_users'] = 1;
-        }elseif(isset($data['authorized_user_code']) && !empty($data['authorized_user_code'])){
+        //默认为全部删除
+        $data['delete_all_users'] = 1;
+        if(isset($data['authorized_user_code']) && !empty($data['authorized_user_code'])){
             //如果授权邮箱不为空的情况下
+            //是否删除取消所有邮箱的授权,修改为否
+            $data['delete_all_users'] = 0;
             //先取出已经授权的邮箱
             $authorizedModel = model('AuthorizedUser');
             $authorized_w['market_code'] = $market_code;
             $exit_users = $authorizedModel->getDataList($authorized_w);
-            if(!empty($exit_users)){
-                $exit_users = json_decode(json_encode($exit_users),true);
-                $exit_users = array_column($exit_users,'user_code');
+            if (!empty($exit_users)) {
+                $exit_users = json_decode(json_encode($exit_users), true);
+                $exit_users = array_column($exit_users, 'user_code');
                 //需要先删除的邮箱数组为
                 $data['delete_users'] = $exit_users;
             }
             //需要更新状态为有效的数组为
-            $active_users = array_intersect($data['authorized_user_code'],$exit_users);
-            if(!empty($active_users)){
+            $active_users = array_intersect($data['authorized_user_code'], $exit_users);
+            if (!empty($active_users)) {
                 $data['active_users'] = $active_users;
             }
             //需要新增的授权邮箱为
-            $insert_users = array_diff($data['authorized_user_code'],$exit_users);
-            if(!empty($insert_users)){
-                $data['insert_users'] = $this->_change_authorized_user_insert($market_code,$insert_users,$data['last_update_user']);
+            $insert_users = array_diff($data['authorized_user_code'], $exit_users);
+            if (!empty($insert_users)) {
+                $data['insert_users'] = $this->_change_authorized_user_insert($market_code, $insert_users, $data['last_update_user']);
             }
         }
         unset($data['authorized_user_code']);

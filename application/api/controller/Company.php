@@ -97,6 +97,13 @@ class Company extends Baseapi
     {
         $postData = Request::instance()->param();
         //$param = $this->param;
+
+        //增加判断使得支持单个公司添加
+        if(!isset($postData[0]))
+        {
+            $postData = array($postData);
+        }
+
         $companyModel = model('Company');
         //$postData = json_decode('[{"f_name":"腾讯","f_en_name":"tx","f_group_code":"jt_1548139507","f_sync_type":"1"},{"f_name":"百度","f_en_name":"bd","f_group_code":"jt_1548139507","f_sync_type":"0"}]',true);
         $data = self::_changeDatas($postData,1);
@@ -124,6 +131,7 @@ class Company extends Baseapi
      * @return {"name":"company_code","type":"string","desc":"公司的编号","level":2}
      * @return {"name":"name","type":"string","desc":"公司中文名称","level":2}
      * @return {"name":"en_name","type":"string","desc":"公司英文名称","level":2}
+     * @return {"name":"group_code","type":"string","desc":"公司所属集团的编码","level":2}
      * @return {"name":"sync_type","type":"int","desc":"数据同步方式1自动,0手动","level":2}
      * @return {"name":"status","type":"int","desc":"公司的状态","level":2}
      * @return {"name":"err","type":"string","required":true,"desc":"返回的错误信息","level":1}

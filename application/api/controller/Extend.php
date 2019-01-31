@@ -46,7 +46,7 @@ class Extend extends Baseapi
     }
 
     /**
-     * @title 新增集团扩展数据接口(添加扩展信息表单提交)
+     * @title 新增集团扩展数据接口
      * @desc  {"0":"接口地址：http://api.master.com/extend/create","1":"请求方式：POST","2":"接口备注：必须传入keys值用于通过加密验证"}
      * @postBody {"0":{"f_subdomain":"newapi.master.com","f_group_code":"jt_1548139507","f_logo":"ttm","f_group_email":"email.liulinyan.com"}}
      * @returnDemo {"0":{"code":200,"data":{"extend_code":"ex_1548296601","group_code":"jt_1548139507","subdomain":"newapi.master.com","logo":"http:\/\/kelacms.kela.cn\/images\/SEO\/jiezhi\/1.jpg","group_email":"email.liuliny.com","status":1},"error":""}}
