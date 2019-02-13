@@ -61,6 +61,12 @@ class Index extends Baseapi
         return view('finance');
     }
 
-    
+    //邮件信息
+    public function sendmail()
+    {
+        return view('mail');
+    }
+
+
 }
  

@@ -16,7 +16,8 @@ return [
         'app\api\controller\Contact',
         'app\api\controller\Market',
         'app\api\controller\Extend',
-        'app\api\controller\Finance'
+        'app\api\controller\Finance',
+        'app\api\controller\EmailHelper'
         // ...
     ],
 ];

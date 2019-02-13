@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件信息测试</title>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+<div class="container">
+    <div style="margin-top: 25px;">
+        <span class="text-muted" style="vertical-align: bottom;font-size: 28px; margin-left: 5px;">{$title}</span>
+    </div>
+</div>
+<div class="container"><hr style="color: #9d9d9d"></div>
+<div class="container">
+
+    <form action="/mail/send" method="post">
+        <h1>接口1：发送邮件接口</h1>
+        <table>
+            <tr>
+                <td>集团编码：<input type="text" name="app_code" value="jt_1548139507"></td>
+            </tr>
+            <tr>
+                <td>模板名称：<input type="text" name="tpl_name" value="register_invite"></td>
+                <td>用户信息：<input type="text" name="user_info" value=""></td>
+            </tr>
+            <tr><td colspan="2"><input type="submit" value="发送邮件(接口mail/send)"></td></tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

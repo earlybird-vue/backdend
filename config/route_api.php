@@ -61,6 +61,8 @@ return [
     'group/show/:code' => ['api/group/detail',['method'=>'GET']],
     'group/active/:code' => ['api/group/active',['method'=>'GET']],
 
+    'mail/send' => ['api/emailHelper/sendEmail',['method'=>'POST']],
+
 
     'company/list/:code' => ['api/company/index',['method'=>'GET']],
     'company/get/:code' => ['api/company/read',['method'=>'GET']],
@@ -102,7 +104,8 @@ return [
     'index/market'  =>  ['api/index/market',['method'=>'GET']],
     'index/extend' => ['api/index/extend',['method'=>'GET']],
     'index/finance' => ['api/index/finance',['method'=>'GET']],
-    'index/sync' => ['api/index/auto_sync',['method'=>'GET']]
+    'index/sync' => ['api/index/auto_sync',['method'=>'GET']],
+    'index/mail' => ['api/index/sendmail',['method'=>'GET']]
 
 
 ];
