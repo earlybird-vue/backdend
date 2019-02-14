@@ -105,7 +105,9 @@ return [
     'index/extend' => ['api/index/extend',['method'=>'GET']],
     'index/finance' => ['api/index/finance',['method'=>'GET']],
     'index/sync' => ['api/index/auto_sync',['method'=>'GET']],
-    'index/mail' => ['api/index/sendmail',['method'=>'GET']]
+    'index/mail' => ['api/index/sendmail',['method'=>'GET']],
 
-
+    'authorize' => ['api/oAuth/authorize',['method'=>'POST']],
+    'token' => ['api/oAuth/token',['method'=>'POST']],
+    'resource' => ['api/oAuth/resource',['method'=>'GET']]
 ];
