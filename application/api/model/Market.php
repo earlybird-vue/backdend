@@ -171,12 +171,17 @@ class Market extends Model
      */
     public function buildUUID()
     {
-        $uuid = $this->field('UUID_SHORT() id')->find();
-        if(empty($uuid)){
-            return time().mt_rand(1000000,9999999);
-        }else{
-            return $uuid['id'];
-        }
+        return 'MARKET_'.date('Ymd').'_';
+    }
+
+    /**
+     * @desc 获取当天添加的序号
+     */
+    public function get_day_num()
+    {
+        $w['substring(create_time,1,10)'] = array('eq',date('Y-m-d'));
+        $data = $this->field('count(*) count')->where($w)->find()->toArray();
+        return $data['count']+1;
     }
 
 }

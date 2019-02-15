@@ -67,6 +67,13 @@ class Index extends Baseapi
         return view('mail');
     }
 
+    //测试顺序
+    public function groupOrder()
+    {
+        $market = model('Market');
+        $order = $market->get_order_num();
+        print_r($order);
+    }
 
 }
  

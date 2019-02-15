@@ -282,6 +282,9 @@ class Contact extends Baseapi
         }
         $contactModel = model('Contact');
         $username = empty($GLOBALS['userInfo']) ? 'admin' : $GLOBALS['userInfo']['username'];
+
+        $day_num = $contactModel->get_day_num();
+
         foreach($datas as $key => $data)
         {
             foreach($data as $k=>$v)
@@ -311,10 +314,14 @@ class Contact extends Baseapi
             if(isset($data['user_role'])){
                 unset($data['user_role']);
             }
-            $data['code'] = 'ct_'.$contactModel->buildUUID();
             $data['user_name'] = $data['last_name'].$data['first_name'];
             //如果是添加操作
             if( $act == 1 ){
+                $order_num = $day_num + $key;
+                if($order_num<10){
+                    $order_num = '0'.$order_num;
+                }
+                $data['code'] = $contactModel->buildUUID().$order_num;
                 $data['create_user'] = $username;
             }elseif( $act == 2 ){
                 $data['last_update_user'] = $username;

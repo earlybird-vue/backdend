@@ -123,7 +123,7 @@ class Group extends Baseapi
         $postData = Request::instance()->param();
         $groupModel = model('Group');
         $data = $this->_changeData($postData,1);
-        $data['code'] = 'jt_'.$groupModel->buildUUID();
+        $data['code'] = $groupModel->buildUUID();
         $resData = $groupModel->createData($data);
         if (!$resData) {
             return resultArray(['error' => $groupModel->getError()]);

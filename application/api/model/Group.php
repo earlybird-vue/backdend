@@ -116,13 +116,24 @@ class Group extends Model
      */
     public function buildUUID()
     {
-        $uuid = $this->field('UUID_SHORT() id')->find();
-        if(empty($uuid)){
-            return time();
-        }else{
-            return $uuid['id'];
+        $num = $this->get_day_num();
+        if($num<10){
+            $num = '0'.$num;
         }
+        return 'GROUP_'.date('Ymd').'_'.$num;
     }
+
+    /**
+     * @desc 获取当天添加的序号
+     */
+    public function get_day_num()
+    {
+        $w['substring(create_time,1,10)'] = array('eq',date('Y-m-d'));
+        $data = $this->field('count(*) count')->where($w)->find()->toArray();
+        return $data['count']+1;
+    }
+
+
 
     /**
      * @param $code string

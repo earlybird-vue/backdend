@@ -106,6 +106,8 @@ return [
     'index/finance' => ['api/index/finance',['method'=>'GET']],
     'index/sync' => ['api/index/auto_sync',['method'=>'GET']],
     'index/mail' => ['api/index/sendmail',['method'=>'GET']],
+    'index/mail' => ['api/index/sendmail',['method'=>'GET']],
+    'index/order' => ['api/index/groupOrder',['method'=>'GET']],
 
     'authorize' => ['api/oAuth/authorize',['method'=>'POST']],
     'token' => ['api/oAuth/token',['method'=>'POST']],

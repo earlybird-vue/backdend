@@ -105,7 +105,7 @@ class Company extends Baseapi
         }
 
         $companyModel = model('Company');
-        //$postData = json_decode('[{"f_name":"腾讯","f_en_name":"tx","f_group_code":"jt_1548139507","f_sync_type":"1"},{"f_name":"百度","f_en_name":"bd","f_group_code":"jt_1548139507","f_sync_type":"0"}]',true);
+        //$postData = json_decode('[{"f_name":"腾讯2","f_en_name":"tx","f_group_code":"jt_1548139507","f_sync_type":"1"},{"f_name":"百度2","f_en_name":"bd","f_group_code":"jt_1548139507","f_sync_type":"0"}]',true);
         $data = self::_changeDatas($postData,1);
         $resData = $companyModel->createData($data);
         if (!$resData) {
@@ -259,6 +259,8 @@ class Company extends Baseapi
         $username = empty($GLOBALS['userInfo']) ? 'admin' : $GLOBALS['userInfo']['username'];
         $companyModel = model('Company');
         $apikeys = array();
+        //获取当天添加公司的数量+1
+        $day_num = $companyModel->get_day_num();
         foreach($datas as $key=>$data)
         {
             foreach($data as $k=>$v) {
@@ -271,7 +273,11 @@ class Company extends Baseapi
             }
             //如果是添加操作
             if( $act == 1 ){
-                $data['code'] = 'gs_'.$companyModel->buildUUID();
+                $code_order_num = $day_num+$key;
+                if($code_order_num<10){
+                    $code_order_num = '0'.$code_order_num;
+                }
+                $data['code'] = $companyModel->buildUUID().$code_order_num;
                 $data['create_user'] = $username;
                 //默认为自动同步数组了
                 if(isset($data['sync_type']) && $data['sync_type']==1)

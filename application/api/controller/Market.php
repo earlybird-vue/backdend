@@ -292,9 +292,15 @@ class Market extends Baseapi
         //获取
         //如果是新增市场操作,则直接添加即可
         $insert_data = array();
-        foreach ($user_codes as $user_code) {
+        //获取当天添加的市场授权序号
+        $day_num = $authorizedModel->get_day_num();
+        foreach ($user_codes as $key=>$user_code) {
             $tmp_data = [];
-            $tmp_data['code'] = 'sq_'.$authorizedModel->buildUUID();
+            $order_num = $day_num+$key;
+            if($order_num<10){
+                $order_num = '0'.$order_num;
+            }
+            $tmp_data['code'] = $authorizedModel->buildUUID().$order_num;
             $tmp_data['market_code'] = $market_code;
             $tmp_data['user_code'] = $user_code;
             $tmp_data['create_user'] = $create_user;
@@ -316,6 +322,10 @@ class Market extends Baseapi
         $username = empty($GLOBALS['userInfo']) ? 'admin' : $GLOBALS['userInfo']['username'];
         $marketModel = model('Market');
         $users_data = array();
+
+        //获取当天添加市场的数量+1
+        $day_num = $marketModel->get_day_num();
+
         foreach($datas as $key=>$data)
         {
             foreach($data as $k=>$v) {
@@ -329,8 +339,13 @@ class Market extends Baseapi
             $data['last_update_user'] = $username;
             //如果是添加操作
             if( $act == 1 ){
+                $code_order_num = $day_num+$key;
+                if($code_order_num<10){
+                    $code_order_num = '0'.$code_order_num;
+                }
+
                 $data['create_user'] = $username;
-                $data['code'] = 'mk_'.$marketModel->buildUUID();
+                $data['code'] = $marketModel->buildUUID().$code_order_num;
 
                 if(!empty($data['authorized_user_code'])) {
                     //市场授权表添加数据

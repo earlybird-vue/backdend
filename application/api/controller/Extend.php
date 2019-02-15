@@ -48,8 +48,8 @@ class Extend extends Baseapi
     /**
      * @title 新增集团扩展数据接口
      * @desc  {"0":"接口地址：http://api.master.com/extend/create","1":"请求方式：POST","2":"接口备注：必须传入keys值用于通过加密验证"}
-     * @postBody {"0":{"f_subdomain":"newapi.master.com","f_group_code":"jt_1548139507","f_logo":"ttm","f_group_email":"email.liulinyan.com"}}
-     * @returnDemo {"0":{"code":200,"data":{"extend_code":"ex_1548296601","group_code":"jt_1548139507","subdomain":"newapi.master.com","logo":"http:\/\/kelacms.kela.cn\/images\/SEO\/jiezhi\/1.jpg","group_email":"email.liuliny.com","status":1},"error":""}}
+     * @postBody {"0":{"f_subdomain":"newapi.master.com","f_group_code":"jt_1548139507","f_logo":"ttm","f_group_email":"email.liulinyan.com","f_email_pwd":"123456"}}
+     * @returnDemo {"0":{"code":200,"data":{"extend_code":"ex_1548296601","group_code":"jt_1548139507","subdomain":"newapi.master.com","logo":"http:\/\/kelacms.kela.cn\/images\/SEO\/jiezhi\/1.jpg","group_email":"email.liuliny.com","email_pwd":"***","status":1},"error":""}}
      * @param {"name":"f_subdomain","type":"string","required":true,"desc":"二级域名","level":1}
      * @param {"name":"f_group_code","type":"string","required":true,"desc":"集团的唯一编码","level":1}
      * @param {"name":"f_logo","type":"string","required":true,"desc":"用户使用的logo图","level":1}
@@ -61,6 +61,7 @@ class Extend extends Baseapi
      * @return {"name":"subdomain","type":"string","desc":"二级域名","level":2}
      * @return {"name":"logo","type":"string","desc":"用户logo图","level":2}
      * @return {"name":"group_email","type":"string","desc":"授予集团的域名邮箱","level":2}
+     * @return {"name":"email_pwd","type":"string","desc":"邮箱密码","level":2}
      * @return {"name":"status","type":"string","desc":"扩展信息的状态","level":2}
      * @return {"name":"err","type":"string","required":true,"desc":"返回的错误信息","level":1}
      */
@@ -75,7 +76,7 @@ class Extend extends Baseapi
         {
             return resultArray(['error' => '该集团已经存在扩展信息,请直接编辑']);
         }
-        $data['code'] = 'ex_'.$extendModel->buildUUID();
+        $data['code'] = $extendModel->buildUUID();
         $resData = $extendModel->createData($data);
         if (!$resData) {
             return resultArray(['error' => $extendModel->getError()]);
@@ -87,8 +88,8 @@ class Extend extends Baseapi
     /**
      * @title 更新扩展信息(类似提交表单的目标接口)
      * @desc  {"0":"接口地址：http://api.master.com/extend/update","1":"请求方式：POST","2":"接口备注：必须传入keys值用于通过加密验证"}
-     * @postBody {"0":{"f_code":"ex_1548296601","f_subdomain":"newapi.master.com","f_group_code":"jt_1548139507","f_logo":"ttm","f_group_email":"email.liulinyan.com","f_status":"0"}}
-     * @returnDemo {"0":{"code":200,"data":{"extend_code":"ex_1548296601","group_code":"jt_1548139507","subdomain":"newapi.master.com","logo":"http:\/\/kelacms.kela.cn\/images\/SEO\/jiezhi\/1.jpg","group_email":"email.liuliny.com","status":1},"error":""}}
+     * @postBody {"0":{"f_code":"ex_1548296601","f_subdomain":"newapi.master.com","f_group_code":"jt_1548139507","f_logo":"ttm","f_group_email":"email.liulinyan.com","f_email_pwd":"123456","f_status":"0"}}
+     * @returnDemo {"0":{"code":200,"data":{"extend_code":"ex_1548296601","group_code":"jt_1548139507","subdomain":"newapi.master.com","logo":"http:\/\/kelacms.kela.cn\/images\/SEO\/jiezhi\/1.jpg","group_email":"email.liuliny.com","email_pwd":"***","status":1},"error":""}}
      * @param {"name":"f_code","type":"string","required":true,"desc":"扩展信息的唯一编码","level":1}
      * @param {"name":"f_subdomain","type":"string","required":true,"desc":"二级域名","level":1}
      * @param {"name":"f_group_code","type":"string","required":true,"desc":"集团的唯一编码","level":1}
@@ -104,6 +105,7 @@ class Extend extends Baseapi
      * @return {"name":"subdomain","type":"string","desc":"二级域名","level":2}
      * @return {"name":"logo","type":"string","desc":"用户logo图","level":2}
      * @return {"name":"group_email","type":"string","desc":"授予集团的域名邮箱","level":2}
+     * @return {"name":"email_pwd","type":"string","desc":"邮箱密码","level":2}
      * @return {"name":"status","type":"string","desc":"扩展信息的状态1有效,0无效","level":2}
      * @return {"name":"err","type":"string","required":true,"desc":"返回的错误信息","level":1}
      */
